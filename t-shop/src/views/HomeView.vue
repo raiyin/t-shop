@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Item from '@/components/Item.vue';
+import BasketItem from '@/components/BasketItem.vue';
 </script>
 
 <template>
     <main>
-        <Item></Item>
+        <BasketItem></BasketItem>
     </main>
 </template>

@@ -20,9 +20,6 @@
 .item {
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
-    font-style: normal;
-    font-weight: 400;
     border-radius: 10px 10px 10px 10px;
     overflow: hidden;
     box-shadow: 4px 4px 10px 0px #00000033;
