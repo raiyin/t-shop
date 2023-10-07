@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script lang="ts">
+export default {
+    name: 'ShopItem',
+};
+</script>
 
 <template>
     <div class="item">
