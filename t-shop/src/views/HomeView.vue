@@ -5,7 +5,7 @@ import ShopItem from '@/components/ShopItem.vue';
 import { type IProduct } from '@/model/IProduct';
 
 let products: Ref<IProduct[]> = ref([]);
-let page = ref(0);
+let page = ref(1);
 let limit = ref(4);
 
 onMounted(() => {
@@ -18,9 +18,23 @@ onMounted(() => {
         })
         .then((response) => {
             products.value = [...response.data];
-            console.log(products);
+            page.value=page.value+1;
         });
 });
+
+function appendProducts(){axios
+        .get('http://localhost:3001/product', {
+            params: {
+                _page: page.value,
+                _limit: limit.value,
+            },
+        })
+        .then((response) => {
+            products.value = [...products.value, ...response.data];
+            page.value=page.value+1;
+            console.log(products);
+        });
+}
 </script>
 
 <template>
@@ -32,7 +46,7 @@ onMounted(() => {
                 </div>
             </template>
         </div>
-        <button>Показать ещё</button>
+        <button @click="appendProducts">Показать ещё</button>
     </section>
 </template>
 
