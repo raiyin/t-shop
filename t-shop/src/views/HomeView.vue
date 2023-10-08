@@ -3,50 +3,28 @@ import { ref, onMounted, type Ref } from 'vue';
 import axios from 'axios';
 import ShopItem from '@/components/ShopItem.vue';
 import { type IProduct } from '@/model/IProduct';
+import { useBasketStore } from '@/stores/basketStore';
+import { useShopStore } from '@/stores/shopStore';
 
-let products: Ref<IProduct[]> = ref([]);
-let page = ref(1);
-let limit = ref(4);
+const shopStore=useShopStore();
+const basketStore = useBasketStore();
 
 onMounted(() => {
-    axios
-        .get('http://localhost:3001/product', {
-            params: {
-                _page: page.value,
-                _limit: limit.value,
-            },
-        })
-        .then((response) => {
-            products.value = [...response.data];
-            page.value=page.value+1;
-        });
+    shopStore.appendProducts()
 });
-
-function appendProducts(){axios
-        .get('http://localhost:3001/product', {
-            params: {
-                _page: page.value,
-                _limit: limit.value,
-            },
-        })
-        .then((response) => {
-            products.value = [...products.value, ...response.data];
-            page.value=page.value+1;
-            console.log(products);
-        });
-}
 </script>
 
 <template>
     <section>
         <div class="section-content">
-            <template v-for="product in products" v-bind:key="product.id">
+            <!-- <template v-for="product in products" v-bind:key="product.id"> -->
+            <template v-for="product in shopStore.shopProducts" v-bind:key="product.id">
                 <div class="column">
                     <ShopItem :product="product"></ShopItem>
                 </div>
             </template>
         </div>
-        <button @click="appendProducts">Показать ещё</button>
+        <button @click="shopStore.appendProducts">Показать ещё</button>
     </section>
 </template>
 
@@ -80,3 +58,4 @@ button {
     align-self: self-end;
 }
 </style>
+@/stores/basketStore

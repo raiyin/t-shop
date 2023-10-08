@@ -1,6 +1,11 @@
+<script setup lang="ts">
+import { useBasketStore } from '@/stores/BasketStore';
+const basketStore = useBasketStore();
+</script>
+
 <template>
     <div class="about">
-        <h1>This is an basket page</h1>
+        <h1>basketStore.basketProducts</h1>
     </div>
 </template>
 
@@ -13,3 +18,4 @@
     }
 }
 </style>
+@/stores/basketStore
