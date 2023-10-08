@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import ShopItem from '@/components/ShopItem.vue';
-import { useBasketStore } from '@/stores/basketStore';
 import { useShopStore } from '@/stores/shopStore';
 
 const shopStore = useShopStore();
-const basketStore = useBasketStore();
 
 onMounted(() => {
     shopStore.appendProducts();
@@ -55,4 +53,3 @@ button {
     align-self: self-end;
 }
 </style>
-@/stores/basketStore

@@ -1,5 +1,15 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
+import { onMounted, computed } from 'vue';
 import ShopLogo from './icons/ShopLogo.vue';
+
+const route = useRoute();
+let path = '';
+
+onMounted(() => {
+    path = route.path;
+    console.log(path);
+});
 </script>
 
 <template>
@@ -8,10 +18,10 @@ import ShopLogo from './icons/ShopLogo.vue';
         <div class="header__nav">
             <ul>
                 <li class="nav__item-active">
-                    <RouterLink to="/">Главная</RouterLink>
+                    <RouterLink to="/" class="nav-link">Главная</RouterLink>
                 </li>
                 <li>
-                    <RouterLink to="/basket">Корзина</RouterLink>
+                    <RouterLink to="/basket" class="nav-link">Корзина</RouterLink>
                 </li>
             </ul>
         </div>
@@ -39,7 +49,12 @@ ul li:not(:last-child) {
     margin-right: 24px;
 }
 
-.nav__item-active {
+a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.router-link-exact-active {
     color: #ba967d;
 }
 </style>
