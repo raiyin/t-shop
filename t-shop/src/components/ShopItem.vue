@@ -1,40 +1,49 @@
-<script lang="ts">
-export default {
-    name: 'ShopItem',
-};
+<script setup lang="ts">
+import { type IProduct } from '@/model/IProduct';
+defineProps<{
+    product?: IProduct
+  }>()
 </script>
 
 <template>
     <div class="item">
-        <img src="./images/camera.png" width="200" height="200" />
+        <img src="./images/camera.png" class="camera" />
         <div class="item__info">
             <div class="item__title">
-                <div class="item__name">Cashmere II</div>
-                <div class="item_desc">Покрывало</div>
+                <div class="item__name">{{ product?.title }}</div>
+                <div class="item_desc">{{ product?.description }}</div>
             </div>
             <div class="item__price">
-                <span>219000Р</span>
+                <span>{{ product?.price }}</span>
                 <img src="./images/basket.png" width="16.55" height="20" />
             </div>
         </div>
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
+@import '../assets/styles.less';
+
 .item {
     display: flex;
     flex-direction: column;
     border-radius: 10px 10px 10px 10px;
     overflow: hidden;
     box-shadow: 4px 4px 10px 0px #00000033;
+    height: 100%;
+}
+
+.item .camera {
+    width: 100%;
+    height: auto;
 }
 
 .item__info {
-    height: 170px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
     justify-content: space-between;
+    padding: 20px;
+    height: 100%;
 }
 
 .item__title {
@@ -50,7 +59,6 @@ export default {
 .item_desc {
     font-size: 14px;
     line-height: 26px;
-    /* or 186% */
     display: flex;
     align-items: center;
     opacity: 0.5;
@@ -59,5 +67,6 @@ export default {
 .item__price {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 </style>

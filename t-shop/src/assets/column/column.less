@@ -1,0 +1,21 @@
+@column-count-s: 2;
+@column-count-m: 2;
+@column-count-l: 4;
+
+.column {
+    box-sizing: border-box;
+
+    @media @screen-only-s {
+        width: 100%;
+    }
+
+    @media @screen-gt-s {
+        width: calc(50% - 40px);
+        max-width: 455px;
+    }
+
+    @media @screen-gt-m {
+        width: calc(25% - 15px);
+        max-width: 325px;
+    }
+}

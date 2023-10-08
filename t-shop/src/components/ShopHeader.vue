@@ -3,7 +3,7 @@ import ShopLogo from './icons/ShopLogo.vue';
 </script>
 
 <template>
-    <div class="header">
+    <header class="header">
         <div class="header__logo"><ShopLogo /></div>
         <div class="header__nav">
             <ul>
@@ -11,7 +11,7 @@ import ShopLogo from './icons/ShopLogo.vue';
                 <li>Корзина</li>
             </ul>
         </div>
-    </div>
+    </header>
 </template>
 
 <style scoped>
@@ -20,6 +20,7 @@ import ShopLogo from './icons/ShopLogo.vue';
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 100px;
     padding: 0 20px;
 }
 
