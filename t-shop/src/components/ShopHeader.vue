@@ -7,8 +7,12 @@ import ShopLogo from './icons/ShopLogo.vue';
         <div class="header__logo"><ShopLogo /></div>
         <div class="header__nav">
             <ul>
-                <li class="nav__item-active">Главная</li>
-                <li>Корзина</li>
+                <li class="nav__item-active">
+                    <RouterLink to="/">Главная</RouterLink>
+                </li>
+                <li>
+                    <RouterLink to="/basket">Корзина</RouterLink>
+                </li>
             </ul>
         </div>
     </header>

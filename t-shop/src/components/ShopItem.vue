@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import { type IProduct } from '@/model/IProduct';
-defineProps<{
-    product?: IProduct
-  }>()
+import { useBasketStore } from '@/stores/basketStore';
+const basketStore = useBasketStore();
+
+const props = defineProps<{
+    product: IProduct
+}>()
+
+  function addProductToBasket()
+  {
+    basketStore.addProduct(props.product)
+  }
 </script>
 
 <template>
@@ -15,7 +23,9 @@ defineProps<{
             </div>
             <div class="item__price">
                 <span>{{ product?.price }}</span>
-                <img src="./images/basket.png" width="16.55" height="20" />
+                <button class="item__btn" @click="addProductToBasket">
+                    <img src="./images/basket.png" width="16.55" height="20" />
+                </button>
             </div>
         </div>
     </div>
@@ -68,5 +78,11 @@ defineProps<{
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+}
+
+.item__btn {
+    border: none;
+    background-color: white;
+    cursor: pointer;
 }
 </style>

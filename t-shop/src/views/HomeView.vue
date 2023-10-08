@@ -1,23 +1,20 @@
 <script setup lang="ts">
-import { ref, onMounted, type Ref } from 'vue';
-import axios from 'axios';
+import { onMounted } from 'vue';
 import ShopItem from '@/components/ShopItem.vue';
-import { type IProduct } from '@/model/IProduct';
 import { useBasketStore } from '@/stores/basketStore';
 import { useShopStore } from '@/stores/shopStore';
 
-const shopStore=useShopStore();
+const shopStore = useShopStore();
 const basketStore = useBasketStore();
 
 onMounted(() => {
-    shopStore.appendProducts()
+    shopStore.appendProducts();
 });
 </script>
 
 <template>
     <section>
         <div class="section-content">
-            <!-- <template v-for="product in products" v-bind:key="product.id"> -->
             <template v-for="product in shopStore.shopProducts" v-bind:key="product.id">
                 <div class="column">
                     <ShopItem :product="product"></ShopItem>
