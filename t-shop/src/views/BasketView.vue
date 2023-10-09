@@ -6,21 +6,21 @@ const basketStore = useBasketStore();
 
 onMounted(() => {
     basketStore.$subscribe((mutation, state) => {
-        console.log(mutation, state.basketStore);
+        //console.log(mutation, state.basketStore);
     });
 });
 </script>
 
 <template>
-    <div class="section-content">
+    <div class="basket">
         <template v-for="product in basketStore.basketProducts" v-bind:key="product.id">
             <BasketItem :product="product"></BasketItem>
         </template>
     </div>
 </template>
 
-<style>
-.section-content {
+<style scoped>
+.basket {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

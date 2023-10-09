@@ -18,7 +18,7 @@ export const useShopStore = defineStore('shopStore', () => {
             .then((response) => {
                 shopProducts.value = [
                     ...shopProducts.value,
-                    ...response.data.map(product => Object.assign({}, product, { count: +product.count || 0 }))];
+                    ...response.data.map((product: IProduct) => Object.assign({}, product, { count: +product.count || 0 }))];
                 page.value = page.value + 1;
             });
     }

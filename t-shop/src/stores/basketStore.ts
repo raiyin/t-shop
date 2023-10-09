@@ -11,9 +11,7 @@ export const useBasketStore = defineStore('basketStore', () => {
     function addProduct(product: IProduct) {
 
         if (basketProducts.value.filter(p => p.id === product.id).length === 0) {
-            basketProducts.value = [...basketProducts.value, product];
-            console.log('0');
-            console.log(basketProducts.value);
+            basketProducts.value = [Object.assign({}, product, { count: 1 })];
         }
         else {
             const index = basketProducts.value.findIndex(p => {
@@ -21,11 +19,8 @@ export const useBasketStore = defineStore('basketStore', () => {
             });
 
             basketProducts.value[index].count += 1;
-            console.log('!0');
-            console.log(basketProducts.value);
         }
 
-        console.log('!0');
         shopStore.takeProduct(product.id);
     }
 

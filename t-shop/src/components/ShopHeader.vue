@@ -1,15 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
-import { onMounted, computed } from 'vue';
 import ShopLogo from './icons/ShopLogo.vue';
-
-const route = useRoute();
-let path = '';
-
-onMounted(() => {
-    path = route.path;
-    console.log(path);
-});
 </script>
 
 <template>
