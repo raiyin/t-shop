@@ -42,6 +42,6 @@ export const useShopStore = defineStore('shopStore', () => {
     }
 
     return {
-        shopProducts, appendProducts, takeProduct, returnProduct
+        shopProducts, page, appendProducts, takeProduct, returnProduct
     };
 });

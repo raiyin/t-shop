@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import ShopItem from '@/components/ShopItem.vue';
 import { useShopStore } from '@/stores/shopStore';
 
 const shopStore = useShopStore();
-
-onMounted(() => {
+if (shopStore.page == 1) {
     shopStore.appendProducts();
-    shopStore.$subscribe((mutation, state) => {
-        //console.log(mutation, state.shopProducts);
-    });
-});
+}
 </script>
 
 <template>

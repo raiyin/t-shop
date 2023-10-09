@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import BasketItem from '@/components/BasketItem.vue';
-import { onMounted } from 'vue';
 import { useBasketStore } from '@/stores/BasketStore';
 const basketStore = useBasketStore();
-
-onMounted(() => {
-    basketStore.$subscribe((mutation, state) => {
-        //console.log(mutation, state.basketStore);
-    });
-});
 </script>
 
 <template>
