@@ -7,10 +7,10 @@ const props = defineProps<{
     product: IProduct
 }>()
 
-  function addProductToBasket()
-  {
+function addProductToBasket()
+{
     basketStore.addProduct(props.product)
-  }
+}
 </script>
 
 <template>
@@ -23,7 +23,11 @@ const props = defineProps<{
             </div>
             <div class="item__price">
                 <span>{{ product?.price }}</span>
-                <button class="item__btn" @click="addProductToBasket">
+                <button
+                    class="item__btn"
+                    @click="addProductToBasket"
+                    :disabled="+product.count === 0"
+                >
                     <img src="./images/basket.png" width="16.55" height="20" />
                 </button>
             </div>
@@ -84,5 +88,9 @@ const props = defineProps<{
     border: none;
     background-color: white;
     cursor: pointer;
+}
+
+.item__btn:disabled {
+    visibility: hidden;
 }
 </style>

@@ -7,6 +7,9 @@ const shopStore = useShopStore();
 
 onMounted(() => {
     shopStore.appendProducts();
+    shopStore.$subscribe((mutation, state) => {
+        console.log(mutation, state.shopProducts);
+    });
 });
 </script>
 

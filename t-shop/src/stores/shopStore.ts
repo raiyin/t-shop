@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, watch, type Ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import { type IProduct } from '@/model/IProduct';
 import axios from 'axios';
 
@@ -16,12 +16,32 @@ export const useShopStore = defineStore('shopStore', () => {
             },
         })
             .then((response) => {
-                shopProducts.value = [...shopProducts.value, ...response.data];
+                shopProducts.value = [
+                    ...shopProducts.value,
+                    ...response.data.map(product => Object.assign({}, product, { count: +product.count || 0 }))];
                 page.value = page.value + 1;
             });
     }
 
+    function takeProduct(productId: number) {
+        shopProducts.value =
+            shopProducts.value.map(product =>
+                product.id == productId ?
+                    Object.assign({}, product, { count: +product.count - 1 }) :
+                    product
+            );
+    }
+
+    function returnProduct(productId: number) {
+        shopProducts.value =
+            shopProducts.value.map(product =>
+                product.id == productId ?
+                    Object.assign({}, product, { count: +product.count + 1 }) :
+                    product
+            );
+    }
+
     return {
-        shopProducts, appendProducts
+        shopProducts, appendProducts, takeProduct, returnProduct
     };
 });
