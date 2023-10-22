@@ -7,8 +7,7 @@ const props = defineProps<{
     product: IProduct
 }>()
 
-function removeProductFromBasket()
-{
+function removeProductFromBasket() {
     basketStore.removeProduct(props.product.id);
 }
 </script>
