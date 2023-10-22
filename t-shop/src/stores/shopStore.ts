@@ -9,39 +9,45 @@ export const useShopStore = defineStore('shopStore', () => {
     const limit = ref(4);
 
     function appendProducts() {
-        axios.get('http://localhost:3001/product', {
-            params: {
-                _page: page.value,
-                _limit: limit.value,
-            },
-        })
+        axios
+            .get('http://localhost:3001/product', {
+                params: {
+                    _page: page.value,
+                    _limit: limit.value,
+                },
+            })
             .then((response) => {
                 shopProducts.value = [
                     ...shopProducts.value,
-                    ...response.data.map((product: IProduct) => Object.assign({}, product, { count: +product.count || 0 }))];
+                    ...response.data.map((product: IProduct) =>
+                        Object.assign({}, product, { count: +product.count || 0 })
+                    ),
+                ];
                 page.value = page.value + 1;
             });
     }
 
     function takeProduct(productId: number) {
-        shopProducts.value =
-            shopProducts.value.map(product =>
-                product.id == productId ?
-                    Object.assign({}, product, { count: +product.count - 1 }) :
-                    product
-            );
+        shopProducts.value = shopProducts.value.map((product) =>
+            product.id == productId
+                ? Object.assign({}, product, { count: +product.count - 1 })
+                : product
+        );
     }
 
     function returnProduct(productId: number) {
-        shopProducts.value =
-            shopProducts.value.map(product =>
-                product.id == productId ?
-                    Object.assign({}, product, { count: +product.count + 1 }) :
-                    product
-            );
+        shopProducts.value = shopProducts.value.map((product) =>
+            product.id == productId
+                ? Object.assign({}, product, { count: +product.count + 1 })
+                : product
+        );
     }
 
     return {
-        shopProducts, page, appendProducts, takeProduct, returnProduct
+        shopProducts,
+        page,
+        appendProducts,
+        takeProduct,
+        returnProduct,
     };
 });
