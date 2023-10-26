@@ -8,7 +8,7 @@ describe('Counter', () => {
         expect(wrapper.html()).toContain("Current count: 0")
     })
 
-    it('should increment correctly', async () => {
+    it('should increment correctly value', async () => {
         await wrapper.find('[data-type="increment"]').trigger('click')
         expect(wrapper.html()).toContain("Current count: 1")
     })
